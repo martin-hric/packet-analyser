@@ -2,8 +2,6 @@ from scapy.all import *
 from binascii import *
 from collections import Counter
 import ruamel.yaml
-import os
-import sys
 
 path = 'vzorky_pcap_na_analyzu/trace-27.pcap'
 output = {
@@ -17,19 +15,6 @@ output = {
 
 yaml = ruamel.yaml.YAML()
 
-class HexPacket:
-    def __init__(self, hex):
-        self.hex = hex
-        self.length_pcap_API = 0
-        self.length_medium = 0
-        self.type = ''
-        self.protocol_2 = ''
-        self.src_mac = ''
-        self.dst_mac = ''
-        self.src_ipv4 = ''
-        self.dst_ipv4 = ''
-        self.protocol_3 = ''
-
 class AnalysedPacket():
     def __init__(self, packet):
         self.number = int
@@ -37,26 +22,24 @@ class AnalysedPacket():
         self.length_pcap_API = int
         self.length_medium = int
         self.payload = packet[28:30]
-        self.d_length = packet[24:28]
-        self.protocol_2 = str
-        self.protocol_3 = packet[46:48]
-        self.protocol_4 = str
+        self.hex_ethertype = packet[24:28]
+        self.ethertype = str
+        self.ip_protocol = str
+        self.app_protocol = str
         self.dst_mac = packet[:12]
         self.src_mac = packet[12:24]
         self.src_port = int(packet[68:72], 16)
         self.dst_port = int(packet[72:76], 16)
         self.src_ipv4 = str
         self.dst_ipv4 = str
-        self.l_port = str
-        self.druh = str
+        self.src_ipv6 = str
+        self.dst_ipv6 = str
+        self.smaller_port = str
+        self.tcp = False
+        self.udp = False
+        self.icmp = False
         self.sap = str
         self.pid = packet[40:44]
-
-
-def append_to_output(d,key,value):
-    if key not in output.get(d):
-        output[d].key = []
-    output[d].key.append(value)
 
 def savePcap():
     packet = rdpcap(path)
@@ -67,8 +50,8 @@ def savePcap():
 
     txt.close()
 
-
 def analyse():
+    #open external files
     hex_txt = open('./txt/hex_packet.txt', 'r')
     arp_paket = open('./txt/arp_paket.txt', 'w')
     icmp_paket = open('./txt/icmp_paket.txt', 'w')
@@ -85,108 +68,108 @@ def analyse():
     for ramec in hex_txt:
         # load packet into class
         packet = AnalysedPacket(ramec)
-        number = number + 1
+        number += 1
         packet.number = number
         out = {}
 
+        #set lenghts of packet
         packet.length_pcap_API = int((len(ramec) - 1) / 2)
         packet.length_medium = packet.length_pcap_API + 4
         if packet.length_medium < 64:
             packet.length_medium = 64
 
-        if int(packet.d_length, 16) > 1500:
-            packet.type = 'Ethernet II'
-        elif packet.payload == 'ff' and int(packet.d_length, 16) <= 1500:
-            packet.type = 'IEEE 802.3 RAW'
-            packet.protocol_3 = 'IPX'
-        elif packet.payload == 'aa' and int(packet.d_length, 16) <= 1500:
-            packet.type = 'IEEE 802.3 LLC & SNAP'
-        else:
-            packet.type = 'IEEE 802.3 LLC'
-            packet.sap = find_protocol(packet.payload.upper(), dict, '#LSAPs')
-    
-        packet.protocol_2 = find_protocol(packet.d_length.upper(), dict, '#Ethertypes')
-
-        if packet.protocol_2 == 'IPv4':
-            packet.src_ipv4 = convert_hexString_to_IP(ramec[52:60])
-            packet.dst_ipv4 = convert_hexString_to_IP(ramec[60:68])
-
-        packet.l_port = min(packet.src_port, packet.dst_port)
-
-        packet.protocol_3 = find_protocol(packet.protocol_3, dict, '#IP')
-        if packet.protocol_3 == 'ICMP':
-            packet.druh = ''
-            if packet.protocol_2 == 'IPv4':
-                icmp = icmp + 1
-                icmp_paket.write(str(packet.number) + '\n' + ramec)
-        elif packet.protocol_3 == '':
-            packet.druh = ''
-        elif packet.protocol_3 == 'TCP':
-            packet.druh = '#TCP ports'
-        elif packet.protocol_3 == 'UDP':
-            packet.druh = '#UDP ports'
-
-        packet.protocol_4 = find_protocol(packet.l_port, dict, packet.druh)
-
-        if packet.protocol_2 == 'IPv4':
-            ipv4_list.append(packet.src_ipv4)
-        elif packet.protocol_2 == 'ARP':
-            arp = arp + 1
-            arp_paket.write(str(packet.number) + '\n' + ramec)
-        elif packet.protocol_2 == 'LLDP':
-            lldp = lldp + 1
-
-        if packet.protocol_2 == 'LLDP':
-            lldp_subor.write('ramec: ' + str(packet.number) + '\n')
-        
-
-        out['frame_number'] = packet.number
-        out['len_frame_pcap'] = packet.length_pcap_API
-        out['len_frame_medium'] = packet.length_medium
-        out['frame_type'] = packet.type
-        out['src_mac'] = packet.src_mac
-        out['dst_mac'] = packet.dst_mac
-
-        if(packet.type == 'Ethernet II'):
-            out['ether_type'] = packet.protocol_2  
-        
+        #format src_mac address
         source_mac = ''
         for(i, c) in enumerate(packet.src_mac):
             if i % 2 == 0 and i != 0:
                 source_mac += ':'
             source_mac += c
 
+        #format dst_mac address
         destination_mac = ''
         for(i, c) in enumerate(packet.dst_mac):
             if i % 2 == 0 and i != 0:
                 destination_mac += ':'
             destination_mac += c
 
+        #set ethertypes
+        packet.ethertype = find_protocol(packet.hex_ethertype.upper(), dict, '#Ethertypes')
+
+        out['frame_number'] = packet.number
+        out['len_frame_pcap'] = packet.length_pcap_API
+        out['len_frame_medium'] = packet.length_medium
         out['src_mac'] = source_mac
         out['dst_mac'] = destination_mac
 
-        if(packet.protocol_2 == 'IPv4'):
-            out['protocol'] = packet.protocol_3
-            out['src_ip'] = packet.src_ipv4
-            out['dst_ip'] = packet.dst_ipv4
-
-        if(packet.protocol_3 != '' and packet.protocol_3 != 'ICMP'):
-            out['src_port'] = packet.src_port
-            out['dst_port'] = packet.dst_port
-
-        if(packet.protocol_4 != ''):
-            out['app_protocol'] = packet.protocol_4
-
-        if(packet.type == 'IEEE 802.3 LLC'):
+        #set frame types
+        if int(packet.hex_ethertype, 16) > 1500:
+            packet.type = 'Ethernet II'
+            out['ether_type'] = packet.ethertype
+        elif packet.payload == 'ff':
+            packet.type = 'IEEE 802.3 RAW'
+        elif packet.payload == 'aa':
+            packet.type = 'IEEE 802.3 LLC & SNAP'
+            packet.pid = find_protocol(packet.pid.upper(), dict, '#PID')
+            if(packet.pid != ''):
+                out['pid'] = packet.pid
+        else:
+            packet.type = 'IEEE 802.3 LLC'
+            packet.sap = find_protocol(packet.payload.upper(), dict, '#SAP')
             if(packet.sap != ''):
                 out['sap'] = packet.sap
 
-        if(packet.type == 'IEEE 802.3 LLC & SNAP'):
-            packet.pid = find_protocol(packet.pid.upper(), dict, '#Ethertypes')
-            if(packet.pid != ''):
-                out['pid'] = packet.pid
-    
+        out['frame_type'] = packet.type
+        
+        #IPv4 and ARP
+        if packet.hex_ethertype == '0800':
+            packet.src_ipv4 = convert_hexString_to_IP(ramec[52:60])
+            packet.dst_ipv4 = convert_hexString_to_IP(ramec[60:68])
+            out['src_ip'] = packet.src_ipv4
+            out['dst_ip'] = packet.dst_ipv4
+        #IPv6
+        elif packet.hex_ethertype == '86DD':
+            packet.src_ipv6 = convert_ipv6(ramec[44:76])
+            packet.dst_ipv6 = convert_ipv6(ramec[76:108])
+            out['src_ip'] = packet.src_ipv6
+            out['dst_ip'] = packet.dst_ipv6
+        elif packet.hex_ethertype == '0806':
+            pass
+        
+        #if its IPv4, set nested protocols
+        if packet.hex_ethertype == '0800':
+            ipv4_list.append(packet.src_ipv4)
+            #smaller_port is the port with lower value and we set the application protocol according to it
+            packet.smaller_port = min(packet.src_port, packet.dst_port)
+            #set ip protocol
+            packet.ip_protocol = find_protocol(ramec[46:48].upper(), dict, '#IP')
+            out['protocol'] = packet.ip_protocol
+            #TCP and #UDP -> set ports and application protocol
+            if ramec[46:48] == '06' or ramec[46:48] == '11':
+                out['src_port'] = packet.src_port
+                out['dst_port'] = packet.dst_port
+                packet.app_protocol = find_protocol(packet.smaller_port, dict, '#APP Ports')
+                if packet.app_protocol != '':
+                    out['app_protocol'] = packet.app_protocol
+            #ICMP  
+            elif ramec[46:48] == '01':
+                icmp += 1
+                icmp_paket.write(str(packet.number) + '\n' + ramec)
+            #IGMP
+            elif ramec[46:48] == '02':
+                pass
+            #PIM
+            elif ramec[46:48] == '67':
+                pass
+        #ARP
+        elif packet.hex_ethertype == '0806':
+            arp += 1
+            arp_paket.write(str(packet.number) + '\n' + ramec)
+        #LLDP
+        elif packet.hex_ethertype== '88CC':
+            lldp += 1
+            lldp_subor.write('ramec: ' + str(packet.number) + '\n')
 
+        #format hexa_frame 
         hexa = ''
         for i in range(packet.length_pcap_API * 2):
             if i % 2 == 0 and i != 0 and i% 32 != 0:
@@ -194,13 +177,10 @@ def analyse():
             if i % 32 == 0 and i != 0:
                 hexa += '\n'
             hexa += ramec[i].upper()
-
         hexa += '\n'
 
         out['hexa_frame'] = ruamel.yaml.scalarstring.LiteralScalarString(hexa)
         output['packets'].append(out)
-
-        packet.number = packet.number + 1
 
     yaml.dump(output, open('output.yaml', 'w'))
 
@@ -253,16 +233,16 @@ def analyse():
 
 #             packet.type = 'Ethernet II'
 
-#             packet.protocol_2 = 'IPv4'
+#             packet.ethertype = 'IPv4'
 
 #             packet.dst_mac = ramec[:12]
 #             packet.src_mac = ramec[12:24]
 
-#             if packet.protocol_2 == 'IPv4':
+#             if packet.ethertype == 'IPv4':
 #                 packet.src_ipv4 = convert_hexString_to_IP(ramec[52:60])
 #                 packet.dst_ipv4 = convert_hexString_to_IP(ramec[60:68])
 
-#             packet.protocol_3 = 'ICMP'
+#             packet.ip_protocol = 'ICMP'
 
 #             icmp_textak.write('----------------------------------- ramec: ' + str(
 #                 cislo_icmp) + '----------------------------------' + '\n')
@@ -283,10 +263,10 @@ def analyse():
 #                     icmp_textak.write(':')
 #                 icmp_textak.write(packet.dst_mac[i])
 
-#             icmp_textak.write('\n' + packet.protocol_2)
+#             icmp_textak.write('\n' + packet.ethertype)
 #             icmp_textak.write('\nZdrojová IP adresa: ' + packet.src_ipv4)
 #             icmp_textak.write('\nCielova IP adresa: ' + packet.dst_ipv4)
-#             icmp_textak.write('\n' + packet.protocol_3)
+#             icmp_textak.write('\n' + packet.ip_protocol)
 #             icmp_textak.write('\nTyp ICMP komunikacie: ' + typ)
 
 #             for i in range(packet.length_pcap_API * 2):
@@ -530,6 +510,18 @@ def convert_hexString_to_IP(string):
     ip = ["".join(x) for x in zip(*[iter(string)] * 2)]
     ip = [int(x, 16) for x in ip]
     ip = ".".join(str(x) for x in ip)
+    return ip
+
+def convert_ipv6(string):
+    ip = ["".join(x) for x in zip(*[iter(string)] * 4)]
+    ip = [x for x in ip]
+    ip = ":".join(str(x) for x in ip)
+    ip = ip.replace(':0000:', '::')
+    ip = ip.replace(':000', ':')
+    ip = ip.replace(':00', ':')
+    ip = ip.replace(':0', ':')
+    while(ip.__contains__(':::')):
+        ip = ip.replace(':::', '::')
     return ip
 
 # read types of protocols and save as dict

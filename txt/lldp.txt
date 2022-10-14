@@ -1,3 +1,1 @@
 LLDP ramce: 
-ramec: 325
-ramec: 1287

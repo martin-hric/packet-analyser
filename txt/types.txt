@@ -3,11 +3,13 @@
 0806 ARP
 86DD IPv6
 88CC LLDP
+9000 ECTP
+#PID
 809B AppleTalk
 2000 CDP
 2004 DTP
 010B PVSTP+
-#LSAPs
+#SAP
 42 STP
 F0 NETBIOS
 E0 IPX
@@ -15,7 +17,9 @@ E0 IPX
 01 ICMP
 06 TCP
 11 UDP
-#TCP ports 
+02 IGMP
+67 PIM
+#APP Ports 
 7 echo 
 19 chargen
 20 ftp-data
@@ -36,11 +40,7 @@ E0 IPX
 443 https
 556 microsoft-ds
 1080 socks
-#UDP ports 
-7 echo 
-19 chargen
 37 time 
-53 dns
 67 bootps(dhcp)
 68 bootpc(dhcp)
 69 tftp
