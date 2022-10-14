@@ -1,0 +1,71 @@
+#Ethertypes
+0800 IPv4
+0806 ARP
+86DD IPv6
+88CC LLDP
+809B AppleTalk
+2000 CDP
+2004 DTP
+010B PVSTP+
+#LSAPs
+42 STP
+F0 NETBIOS
+E0 IPX
+#IP
+01 ICMP
+06 TCP
+11 UDP
+#TCP ports 
+7 echo 
+19 chargen
+20 ftp-data
+21 ftp-control
+22 ssh
+23 telnet
+25 smtp
+53 dns
+79 finger
+80 http
+110 pop3
+111 sunrpc
+119 nntp
+139 netbios-ssn
+143 impa
+179 bgp
+389 ldap
+443 https
+556 microsoft-ds
+1080 socks
+#UDP ports 
+7 echo 
+19 chargen
+37 time 
+53 dns
+67 bootps(dhcp)
+68 bootpc(dhcp)
+69 tftp
+137 netbios-ns
+138 netbios-dgm
+161 snmp
+162 snmp-trap
+500 isakmp
+514 syslog
+520 rip
+33434 traceroute
+#ICMP
+0 ECHO REPLY
+3 DESTINATION UNREACHABLE
+4 SOURCE QUENCH
+5 REDIRECT
+8 ECHO REQUEST
+9 ROUTER ADVERTISEMENT
+10 ROUTER SELECTION
+11 TIME EXCEEDED
+12 PARAMETER PROBLEM
+13 TIMESTAMP
+14 TIMESTAMP REPLY
+15 INFORMATION REQUEST
+16 INFORMATION REPLY
+17 ADDRESS MASK REQUEST
+18 ADDRESS MASK REPLY
+30 TRACEROUTE
