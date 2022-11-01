@@ -1,6 +1,11 @@
 # MY files
 zadanie1.py
 .vscode/
+.idea/
+Documentation/
+Protocols/
+xhricm.zip/
+xhricm_ssdp.zip/
 pdfs/
 schemas/
 vzorky_pcap_na_analyzu/
