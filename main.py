@@ -4,7 +4,7 @@ from collections import Counter
 import ruamel.yaml
 import argparse
 
-path = 'vzorky_pcap_na_analyzu/trace-6.pcap'
+path = 'vzorky_pcap_na_analyzu/trace-26.pcap'
 yaml = ruamel.yaml.YAML()
 yaml.representer.ignore_aliases = lambda *args : True
 

@@ -1,6 +1,248 @@
 name: PKS2022/23
-pcap_name: vzorky_pcap_na_analyzu/trace-12.pcap
-ssdp_count: 0
-all_count: 2176
-percent of ssdp: 0.0
-packets: []
+pcap_name: vzorky_pcap_na_analyzu/trace-26.pcap
+ssdp_count: 11
+all_count: 184
+percent of ssdp: 5.98
+packets:
+- frame_number: 100
+  len_frame_pcap: 175
+  len_frame_medium: 179
+  src_mac: 00:10:18:33:cf:44
+  dst_mac: 01:00:5e:7f:ff:fa
+  ether_type: IPv4
+  frame_type: Ethernet II
+  app_protocol: ssdp
+  src_ip: 10.20.30.1
+  dst_ip: 239.255.255.250
+  hexa_frame: |
+    01 00 5E 7F FF FA 00 10 18 33 CF 44 08 00 45 00
+    00 A1 04 66 00 00 01 11 9C D7 0A 14 1E 01 EF FF
+    FF FA F1 38 07 6C 00 8D 18 AE 4D 2D 53 45 41 52
+    43 48 20 2A 20 48 54 54 50 2F 31 2E 31 0D 0A 48
+    6F 73 74 3A 32 33 39 2E 32 35 35 2E 32 35 35 2E
+    32 35 30 3A 31 39 30 30 0D 0A 53 54 3A 75 72 6E
+    3A 73 63 68 65 6D 61 73 2D 75 70 6E 70 2D 6F 72
+    67 3A 64 65 76 69 63 65 3A 49 6E 74 65 72 6E 65
+    74 47 61 74 65 77 61 79 44 65 76 69 63 65 3A 31
+    0D 0A 4D 61 6E 3A 22 73 73 64 70 3A 64 69 73 63
+    6F 76 65 72 22 0D 0A 4D 58 3A 33 0D 0A 0D 0A
+- frame_number: 127
+  len_frame_pcap: 175
+  len_frame_medium: 179
+  src_mac: 00:10:18:33:cf:44
+  dst_mac: 01:00:5e:7f:ff:fa
+  ether_type: IPv4
+  frame_type: Ethernet II
+  app_protocol: ssdp
+  src_ip: 10.20.30.1
+  dst_ip: 239.255.255.250
+  hexa_frame: |
+    01 00 5E 7F FF FA 00 10 18 33 CF 44 08 00 45 00
+    00 A1 04 7B 00 00 01 11 9C C2 0A 14 1E 01 EF FF
+    FF FA F1 38 07 6C 00 8D 18 AE 4D 2D 53 45 41 52
+    43 48 20 2A 20 48 54 54 50 2F 31 2E 31 0D 0A 48
+    6F 73 74 3A 32 33 39 2E 32 35 35 2E 32 35 35 2E
+    32 35 30 3A 31 39 30 30 0D 0A 53 54 3A 75 72 6E
+    3A 73 63 68 65 6D 61 73 2D 75 70 6E 70 2D 6F 72
+    67 3A 64 65 76 69 63 65 3A 49 6E 74 65 72 6E 65
+    74 47 61 74 65 77 61 79 44 65 76 69 63 65 3A 31
+    0D 0A 4D 61 6E 3A 22 73 73 64 70 3A 64 69 73 63
+    6F 76 65 72 22 0D 0A 4D 58 3A 33 0D 0A 0D 0A
+- frame_number: 128
+  len_frame_pcap: 165
+  len_frame_medium: 169
+  src_mac: 00:10:18:33:cf:44
+  dst_mac: 01:00:5e:7f:ff:fa
+  ether_type: IPv4
+  frame_type: Ethernet II
+  app_protocol: ssdp
+  src_ip: 10.20.30.1
+  dst_ip: 239.255.255.250
+  hexa_frame: |
+    01 00 5E 7F FF FA 00 10 18 33 CF 44 08 00 45 00
+    00 97 04 7C 00 00 01 11 9C CB 0A 14 1E 01 EF FF
+    FF FA F1 38 07 6C 00 83 18 A4 4D 2D 53 45 41 52
+    43 48 20 2A 20 48 54 54 50 2F 31 2E 31 0D 0A 48
+    6F 73 74 3A 32 33 39 2E 32 35 35 2E 32 35 35 2E
+    32 35 30 3A 31 39 30 30 0D 0A 53 54 3A 75 72 6E
+    3A 73 63 68 65 6D 61 73 2D 75 70 6E 70 2D 6F 72
+    67 3A 64 65 76 69 63 65 3A 4D 65 64 69 61 53 65
+    72 76 65 72 3A 31 0D 0A 4D 61 6E 3A 22 73 73 64
+    70 3A 64 69 73 63 6F 76 65 72 22 0D 0A 4D 58 3A
+    33 0D 0A 0D 0A
+- frame_number: 129
+  len_frame_pcap: 167
+  len_frame_medium: 171
+  src_mac: 00:10:18:33:cf:44
+  dst_mac: 01:00:5e:7f:ff:fa
+  ether_type: IPv4
+  frame_type: Ethernet II
+  app_protocol: ssdp
+  src_ip: 10.20.30.1
+  dst_ip: 239.255.255.250
+  hexa_frame: |
+    01 00 5E 7F FF FA 00 10 18 33 CF 44 08 00 45 00
+    00 99 04 7D 00 00 01 11 9C C8 0A 14 1E 01 EF FF
+    FF FA F1 38 07 6C 00 85 18 A6 4D 2D 53 45 41 52
+    43 48 20 2A 20 48 54 54 50 2F 31 2E 31 0D 0A 48
+    6F 73 74 3A 32 33 39 2E 32 35 35 2E 32 35 35 2E
+    32 35 30 3A 31 39 30 30 0D 0A 53 54 3A 75 72 6E
+    3A 73 63 68 65 6D 61 73 2D 75 70 6E 70 2D 6F 72
+    67 3A 64 65 76 69 63 65 3A 4D 65 64 69 61 52 65
+    6E 64 65 72 65 72 3A 31 0D 0A 4D 61 6E 3A 22 73
+    73 64 70 3A 64 69 73 63 6F 76 65 72 22 0D 0A 4D
+    58 3A 33 0D 0A 0D 0A
+- frame_number: 130
+  len_frame_pcap: 175
+  len_frame_medium: 179
+  src_mac: 00:10:18:33:cf:44
+  dst_mac: 01:00:5e:7f:ff:fa
+  ether_type: IPv4
+  frame_type: Ethernet II
+  app_protocol: ssdp
+  src_ip: 10.20.30.1
+  dst_ip: 239.255.255.250
+  hexa_frame: |
+    01 00 5E 7F FF FA 00 10 18 33 CF 44 08 00 45 00
+    00 A1 04 7E 00 00 01 11 9C BF 0A 14 1E 01 EF FF
+    FF FA F1 38 07 6C 00 8D 18 AE 4D 2D 53 45 41 52
+    43 48 20 2A 20 48 54 54 50 2F 31 2E 31 0D 0A 48
+    6F 73 74 3A 32 33 39 2E 32 35 35 2E 32 35 35 2E
+    32 35 30 3A 31 39 30 30 0D 0A 53 54 3A 75 72 6E
+    3A 73 63 68 65 6D 61 73 2D 75 70 6E 70 2D 6F 72
+    67 3A 64 65 76 69 63 65 3A 49 6E 74 65 72 6E 65
+    74 47 61 74 65 77 61 79 44 65 76 69 63 65 3A 31
+    0D 0A 4D 61 6E 3A 22 73 73 64 70 3A 64 69 73 63
+    6F 76 65 72 22 0D 0A 4D 58 3A 33 0D 0A 0D 0A
+- frame_number: 137
+  len_frame_pcap: 175
+  len_frame_medium: 179
+  src_mac: 00:10:18:33:cf:44
+  dst_mac: 01:00:5e:7f:ff:fa
+  ether_type: IPv4
+  frame_type: Ethernet II
+  app_protocol: ssdp
+  src_ip: 10.20.30.1
+  dst_ip: 239.255.255.250
+  hexa_frame: |
+    01 00 5E 7F FF FA 00 10 18 33 CF 44 08 00 45 00
+    00 A1 04 84 00 00 01 11 9C B9 0A 14 1E 01 EF FF
+    FF FA F1 38 07 6C 00 8D 18 AE 4D 2D 53 45 41 52
+    43 48 20 2A 20 48 54 54 50 2F 31 2E 31 0D 0A 48
+    6F 73 74 3A 32 33 39 2E 32 35 35 2E 32 35 35 2E
+    32 35 30 3A 31 39 30 30 0D 0A 53 54 3A 75 72 6E
+    3A 73 63 68 65 6D 61 73 2D 75 70 6E 70 2D 6F 72
+    67 3A 64 65 76 69 63 65 3A 49 6E 74 65 72 6E 65
+    74 47 61 74 65 77 61 79 44 65 76 69 63 65 3A 31
+    0D 0A 4D 61 6E 3A 22 73 73 64 70 3A 64 69 73 63
+    6F 76 65 72 22 0D 0A 4D 58 3A 33 0D 0A 0D 0A
+- frame_number: 160
+  len_frame_pcap: 165
+  len_frame_medium: 169
+  src_mac: 00:10:18:33:cf:44
+  dst_mac: 01:00:5e:7f:ff:fa
+  ether_type: IPv4
+  frame_type: Ethernet II
+  app_protocol: ssdp
+  src_ip: 10.20.30.1
+  dst_ip: 239.255.255.250
+  hexa_frame: |
+    01 00 5E 7F FF FA 00 10 18 33 CF 44 08 00 45 00
+    00 97 04 9A 00 00 01 11 9C AD 0A 14 1E 01 EF FF
+    FF FA F1 38 07 6C 00 83 18 A4 4D 2D 53 45 41 52
+    43 48 20 2A 20 48 54 54 50 2F 31 2E 31 0D 0A 48
+    6F 73 74 3A 32 33 39 2E 32 35 35 2E 32 35 35 2E
+    32 35 30 3A 31 39 30 30 0D 0A 53 54 3A 75 72 6E
+    3A 73 63 68 65 6D 61 73 2D 75 70 6E 70 2D 6F 72
+    67 3A 64 65 76 69 63 65 3A 4D 65 64 69 61 53 65
+    72 76 65 72 3A 31 0D 0A 4D 61 6E 3A 22 73 73 64
+    70 3A 64 69 73 63 6F 76 65 72 22 0D 0A 4D 58 3A
+    33 0D 0A 0D 0A
+- frame_number: 161
+  len_frame_pcap: 167
+  len_frame_medium: 171
+  src_mac: 00:10:18:33:cf:44
+  dst_mac: 01:00:5e:7f:ff:fa
+  ether_type: IPv4
+  frame_type: Ethernet II
+  app_protocol: ssdp
+  src_ip: 10.20.30.1
+  dst_ip: 239.255.255.250
+  hexa_frame: |
+    01 00 5E 7F FF FA 00 10 18 33 CF 44 08 00 45 00
+    00 99 04 9B 00 00 01 11 9C AA 0A 14 1E 01 EF FF
+    FF FA F1 38 07 6C 00 85 18 A6 4D 2D 53 45 41 52
+    43 48 20 2A 20 48 54 54 50 2F 31 2E 31 0D 0A 48
+    6F 73 74 3A 32 33 39 2E 32 35 35 2E 32 35 35 2E
+    32 35 30 3A 31 39 30 30 0D 0A 53 54 3A 75 72 6E
+    3A 73 63 68 65 6D 61 73 2D 75 70 6E 70 2D 6F 72
+    67 3A 64 65 76 69 63 65 3A 4D 65 64 69 61 52 65
+    6E 64 65 72 65 72 3A 31 0D 0A 4D 61 6E 3A 22 73
+    73 64 70 3A 64 69 73 63 6F 76 65 72 22 0D 0A 4D
+    58 3A 33 0D 0A 0D 0A
+- frame_number: 163
+  len_frame_pcap: 175
+  len_frame_medium: 179
+  src_mac: 00:10:18:33:cf:44
+  dst_mac: 01:00:5e:7f:ff:fa
+  ether_type: IPv4
+  frame_type: Ethernet II
+  app_protocol: ssdp
+  src_ip: 10.20.30.1
+  dst_ip: 239.255.255.250
+  hexa_frame: |
+    01 00 5E 7F FF FA 00 10 18 33 CF 44 08 00 45 00
+    00 A1 04 9D 00 00 01 11 9C A0 0A 14 1E 01 EF FF
+    FF FA F1 38 07 6C 00 8D 18 AE 4D 2D 53 45 41 52
+    43 48 20 2A 20 48 54 54 50 2F 31 2E 31 0D 0A 48
+    6F 73 74 3A 32 33 39 2E 32 35 35 2E 32 35 35 2E
+    32 35 30 3A 31 39 30 30 0D 0A 53 54 3A 75 72 6E
+    3A 73 63 68 65 6D 61 73 2D 75 70 6E 70 2D 6F 72
+    67 3A 64 65 76 69 63 65 3A 49 6E 74 65 72 6E 65
+    74 47 61 74 65 77 61 79 44 65 76 69 63 65 3A 31
+    0D 0A 4D 61 6E 3A 22 73 73 64 70 3A 64 69 73 63
+    6F 76 65 72 22 0D 0A 4D 58 3A 33 0D 0A 0D 0A
+- frame_number: 168
+  len_frame_pcap: 175
+  len_frame_medium: 179
+  src_mac: 00:10:18:33:cf:44
+  dst_mac: 01:00:5e:7f:ff:fa
+  ether_type: IPv4
+  frame_type: Ethernet II
+  app_protocol: ssdp
+  src_ip: 10.20.30.1
+  dst_ip: 239.255.255.250
+  hexa_frame: |
+    01 00 5E 7F FF FA 00 10 18 33 CF 44 08 00 45 00
+    00 A1 04 A0 00 00 01 11 9C 9D 0A 14 1E 01 EF FF
+    FF FA F1 38 07 6C 00 8D 18 AE 4D 2D 53 45 41 52
+    43 48 20 2A 20 48 54 54 50 2F 31 2E 31 0D 0A 48
+    6F 73 74 3A 32 33 39 2E 32 35 35 2E 32 35 35 2E
+    32 35 30 3A 31 39 30 30 0D 0A 53 54 3A 75 72 6E
+    3A 73 63 68 65 6D 61 73 2D 75 70 6E 70 2D 6F 72
+    67 3A 64 65 76 69 63 65 3A 49 6E 74 65 72 6E 65
+    74 47 61 74 65 77 61 79 44 65 76 69 63 65 3A 31
+    0D 0A 4D 61 6E 3A 22 73 73 64 70 3A 64 69 73 63
+    6F 76 65 72 22 0D 0A 4D 58 3A 33 0D 0A 0D 0A
+- frame_number: 184
+  len_frame_pcap: 175
+  len_frame_medium: 179
+  src_mac: 00:10:18:33:cf:44
+  dst_mac: 01:00:5e:7f:ff:fa
+  ether_type: IPv4
+  frame_type: Ethernet II
+  app_protocol: ssdp
+  src_ip: 10.20.30.1
+  dst_ip: 239.255.255.250
+  hexa_frame: |
+    01 00 5E 7F FF FA 00 10 18 33 CF 44 08 00 45 00
+    00 A1 04 AD 00 00 01 11 9C 90 0A 14 1E 01 EF FF
+    FF FA F1 38 07 6C 00 8D 18 AE 4D 2D 53 45 41 52
+    43 48 20 2A 20 48 54 54 50 2F 31 2E 31 0D 0A 48
+    6F 73 74 3A 32 33 39 2E 32 35 35 2E 32 35 35 2E
+    32 35 30 3A 31 39 30 30 0D 0A 53 54 3A 75 72 6E
+    3A 73 63 68 65 6D 61 73 2D 75 70 6E 70 2D 6F 72
+    67 3A 64 65 76 69 63 65 3A 49 6E 74 65 72 6E 65
+    74 47 61 74 65 77 61 79 44 65 76 69 63 65 3A 31
+    0D 0A 4D 61 6E 3A 22 73 73 64 70 3A 64 69 73 63
+    6F 76 65 72 22 0D 0A 4D 58 3A 33 0D 0A 0D 0A
